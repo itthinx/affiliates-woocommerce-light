@@ -130,4 +130,4 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 == Upgrade Notice ==
 
 = 1.3.1 =
-* This release has been tested with WordPress 4.6.1 and provides an internal improvement for translations.
+* This release has been tested with WordPress 4.7, adds the Spanish translation and provides an internal improvement for translations.
