@@ -3,7 +3,7 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-woocommerce-light
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WooCommerce, WordPress
 Requires at least: 4.0
-Tested up to: 4.5
+Tested up to: 4.7
 Stable tag: 1.3.1
 License: GPLv3
 
@@ -68,7 +68,7 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 == Changelog ==
 
 = 1.3.1 =
-* WordPress 4.6.1 compatible.
+* WordPress 4.7 compatible.
 * Added Spanish translation.
 
 = 1.3.0 =

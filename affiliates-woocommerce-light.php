@@ -129,7 +129,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		$buttons['affiliates-woocommerce-light'] = sprintf (
 			'<a href="%s" class="button-primary">%s</a>',
 			add_query_arg( 'section', 'affiliates-woocommerce-light', admin_url( 'admin.php?page=affiliates-admin-woocommerce-light' ) ),
-			__( 'Set the Commission Rate', 'affiliates' )
+			__( 'Set the Commission Rate', 'affiliates-woocommerce-light' )
 		);
 		return $buttons;
 	}
