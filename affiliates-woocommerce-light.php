@@ -21,10 +21,12 @@
  * Plugin Name: Affiliates WooCommerce Integration Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Integrates Affiliates with WooCommerce
- * Version: 1.3.0
+ * Version: 1.3.1
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/affiliates-enterprise/
+ * Text Domain: affiliates-woocommerce-light
+ * Domain Path: /languages
  * License: GPLv3
  */
 
@@ -40,7 +42,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	const SET_ADMIN_OPTIONS = 'set_admin_options';
 	const REFERRAL_RATE = "referral-rate";
 	const REFERRAL_RATE_DEFAULT = "0";
-	
+
 	const USAGE_STATS = 'usage_stats';
 	const USAGE_STATS_DEFAULT = true;
 
@@ -105,6 +107,9 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 
 		if ( $verified ) {
+
+			load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
+
 			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ) );
 			$options = get_option( self::PLUGIN_OPTIONS , array() );
 			add_filter( 'post_type_link', array( __CLASS__, 'post_type_link' ), 10, 4 );
@@ -124,7 +129,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		$buttons['affiliates-woocommerce-light'] = sprintf (
 			'<a href="%s" class="button-primary">%s</a>',
 			add_query_arg( 'section', 'affiliates-woocommerce-light', admin_url( 'admin.php?page=affiliates-admin-woocommerce-light' ) ),
-			__( 'Set the Commission Rate', AFFILIATES_PLUGIN_DOMAIN )
+			__( 'Set the Commission Rate', 'affiliates' )
 		);
 		return $buttons;
 	}
@@ -220,7 +225,7 @@ class Affiliates_WooCommerce_Light_Integration {
 
 		affiliates_footer();
 	}
-	
+
 	/**
 	 * Add a notice to the footer that the integration is active.
 	 * @param string $footer
