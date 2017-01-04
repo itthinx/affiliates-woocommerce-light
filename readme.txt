@@ -69,7 +69,8 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 
 = 1.3.1 =
 * WordPress 4.7 compatible.
-* Added Spanish translation.
+* Corrected the language domain for a translatable string.
+* Added the Spanish translation.
 
 = 1.3.0 =
 * WordPress 4.5 compatible.
