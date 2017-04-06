@@ -24,7 +24,7 @@ An advanced integration that synchronizes the referrals to their order status is
 Requirements:
 
 - [Affiliates](http://wordpress.org/extend/plugins/affiliates)
-- [Affiliates WooCommerce Integration Light](http://wordpress.org/extend/plugins/affiliates-woocommerce-light) (this plugin)
+- [Affiliates WooCommerce Light](http://wordpress.org/extend/plugins/affiliates-woocommerce-light) (this plugin)
 - [WooCommerce](http://wordpress.org/extend/plugins/woocommerce)
 
 Install these, set up your shop, decide how much you want to pay your affiliates and start selling!
@@ -66,8 +66,9 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 2. Referrals created automatically for sales - Each referral is linked to its order.
 
 == Changelog ==
+
 = 1.3.2 =
-* Woocommerce 3.0 full compatible.
+* Woocommerce 3.0.0 compatible.
 
 = 1.3.1 =
 * WordPress 4.7 compatible.
@@ -132,4 +133,4 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 == Upgrade Notice ==
 
 = 1.3.2 =
-* This release is full compatible with Woocommerce 3.0.0
+* This release is compatible with Woocommerce 3.0.0
