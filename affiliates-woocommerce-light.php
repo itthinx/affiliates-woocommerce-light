@@ -21,7 +21,7 @@
  * Plugin Name: Affiliates WooCommerce Integration Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Integrates Affiliates with WooCommerce
- * Version: 1.3.1
+ * Version: 1.3.2
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/affiliates-enterprise/
@@ -299,7 +299,9 @@ class Affiliates_WooCommerce_Light_Integration {
 						$order_subtotal = 0;
 					}
 				}
-				if ( method_exists( $order, 'get_order_currency' ) ) {
+				if ( method_exists( $order, 'get_currency' ) ) {
+					$currency = $order->get_currency();
+				} else if ( method_exists( $order, 'get_order_currency' ) ) {
 					$currency = $order->get_order_currency();
 				}
 			}

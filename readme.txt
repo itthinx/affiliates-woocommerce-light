@@ -3,8 +3,8 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-woocommerce-light
 Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WooCommerce, WordPress
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.3.1
+Tested up to: 4.7.3
+Stable tag: 1.3.2
 License: GPLv3
 
 This plugin integrates Affiliates with WooCommerce.
@@ -66,6 +66,8 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 2. Referrals created automatically for sales - Each referral is linked to its order.
 
 == Changelog ==
+= 1.3.2 =
+* Woocommerce 3.0 full compatible.
 
 = 1.3.1 =
 * WordPress 4.7 compatible.
@@ -129,5 +131,5 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 
 == Upgrade Notice ==
 
-= 1.3.1 =
-* This release has been tested with WordPress 4.7, adds the Spanish translation and provides an internal improvement for translations.
+= 1.3.2 =
+* This release is full compatible with Woocommerce 3.0.0
