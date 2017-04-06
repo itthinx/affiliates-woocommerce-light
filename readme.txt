@@ -1,7 +1,7 @@
 === Affiliates WooCommerce Integration Light ===
 Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-woocommerce-light
-Tags: ads, advertising, affiliate, affiliate marketing, affiliate plugin, affiliate tool, affiliates, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, marketing, money, online sale, order, partner, referral, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WooCommerce, WordPress
+Tags: affiliate, affiliates, marketing, referral, WooCommerce, ads, advertising, affiliate marketing, affiliate plugin, affiliate tool, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, money, online sale, order, partner, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WordPress
 Requires at least: 4.0
 Tested up to: 4.7.3
 Stable tag: 1.3.2
