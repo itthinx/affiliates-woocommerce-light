@@ -21,7 +21,7 @@
  * Plugin Name: Affiliates WooCommerce Integration Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Integrates Affiliates with WooCommerce
- * Version: 1.3.2
+ * Version: 1.3.3
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/affiliates-enterprise/
