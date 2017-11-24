@@ -1,4 +1,4 @@
-=== Affiliates WooCommerce Integration Light ===
+=== Affiliates WooCommerce Light ===
 Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-woocommerce-light
 Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketing, ads, advertising, affiliate marketing, affiliate plugin, affiliate tool, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, money, online sale, order, partner, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WordPress
@@ -51,7 +51,7 @@ __Follow [itthinx](http://twitter.com/itthinx)__ for updates on this and related
 
 1. Install and activate the [WooCommerce](https://wordpress.org/plugins/woocommerce) plugin. Configure your shop and create products.
 2. Install and activate the [Affiliates](https://wordpress.org/plugins/affiliates) plugin. Use the default settings or configure it to your needs.
-3. Install and activate the [Affiliates WooCommerce Integration Light](https://wordpress.org/plugins/affiliates-woocommerce-light) plugin.
+3. Install and activate the [Affiliates WooCommerce Light](https://wordpress.org/plugins/affiliates-woocommerce-light) plugin.
 4. A new *WooCommerce Integration Light* menu item will appear under the *Affiliates* menu in WordPress. Set the referral rate for your affiliates there.
 
 Note that you can install the plugins from your WordPress installation directly: use the *Add new* option found in the *Plugins* menu.
@@ -88,6 +88,7 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 * WordPress 4.9 compatible.
 * WooCommerce 3.2.5 tested.
 * Changelog file added.
+* Added an ABSPATH check.
 
 For the complete history of changes see [changelog.txt](https://github.com/itthinx/affiliates-woocommerce-light/blob/master/changelog.txt).
 

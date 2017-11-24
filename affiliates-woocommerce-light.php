@@ -18,7 +18,7 @@
  * @package affiliates-woocommerce-light
  * @since affiliates-woocommerce-light 1.0.0
  *
- * Plugin Name: Affiliates WooCommerce Integration Light
+ * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Integrates Affiliates with WooCommerce
  * Version: 1.3.3
@@ -29,6 +29,10 @@
  * Domain Path: /languages
  * License: GPLv3
  */
+
+if ( !defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Light integration for WooCommerce.
@@ -349,4 +353,11 @@ class Affiliates_WooCommerce_Light_Integration {
 		affiliates_suggest_referral( $order_id, $description, $data, $amount, $currency );
 	}
 }
-Affiliates_WooCommerce_Light_Integration::init();
+
+/**
+ * Hooked on the plugins_loaded action to boot the plugin.
+ */
+function affiliates_woocommerce_light_plugins_loaded() {
+	Affiliates_WooCommerce_Light_Integration::init();
+}
+add_action( 'plugins_loaded', 'affiliates_woocommerce_light_plugins_loaded' );
