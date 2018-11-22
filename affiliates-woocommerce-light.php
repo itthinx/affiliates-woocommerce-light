@@ -2,7 +2,7 @@
 /**
  * affiliates-woocommerce-light.php
  * 
- * Copyright (c) 2012-2017 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2012-2018 "kento" Karim Rahimpur www.itthinx.com
  * 
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -21,7 +21,9 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 1.3.3
+ * Version: 1.4.0
+ * WC requires at least: 2.6
+ * WC tested up to: 3.5
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/

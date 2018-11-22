@@ -3,9 +3,9 @@ Contributors: itthinx
 Donate link: http://www.itthinx.com/plugins/affiliates-woocommerce-light
 Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketing, ads, advertising, affiliate marketing, affiliate plugin, affiliate tool, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, money, online sale, order, partner, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WordPress
 Requires at least: 4.0
-Tested up to: 4.9
-Requires PHP: 5.5.0
-Stable tag: 1.3.3
+Tested up to: 5.0
+Requires PHP: 5.6.0
+Stable tag: 1.4.0
 License: GPLv3
 
 Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
@@ -83,6 +83,10 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 2. Referrals created automatically for sales - Each referral is linked to its order.
 
 == Changelog ==
+
+= 1.4.0 =
+* WordPress 5.0 compatible.
+* WooCommerce 3.5 compatible.
 
 = 1.3.3 =
 * WordPress 4.9 compatible.
