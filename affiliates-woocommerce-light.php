@@ -23,7 +23,7 @@
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
  * Version: 1.4.0
  * WC requires at least: 2.6
- * WC tested up to: 3.5
+ * WC tested up to: 3.6
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/
