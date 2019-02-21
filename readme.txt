@@ -5,7 +5,7 @@ Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketi
 Requires at least: 4.0
 Tested up to: 5.1
 Requires PHP: 5.6.0
-Stable tag: 1.4.0
+Stable tag: 1.5.0
 License: GPLv3
 
 Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
@@ -84,18 +84,12 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 
 == Changelog ==
 
-= 1.4.0 =
-* WordPress 5.0 compatible.
-* WooCommerce 3.5 compatible.
-
-= 1.3.3 =
-* WordPress 4.9 compatible.
-* WooCommerce 3.2.5 tested.
-* Changelog file added.
-* Added an ABSPATH check.
+= 1.5.0 =
+* WordPress 5.x compatible.
+* WooCommerce 3.6 compatible.
 
 For the complete history of changes see [changelog.txt](https://github.com/itthinx/affiliates-woocommerce-light/blob/master/changelog.txt).
 
 == Upgrade Notice ==
 
-* This release is compatible with Woocommerce 3.x and tested with WordPress 4.9
+Tested for compatibility with the latest versions.
