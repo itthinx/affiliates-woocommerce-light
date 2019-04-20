@@ -1,19 +1,19 @@
 <?php
 /**
  * affiliates-woocommerce-light.php
- * 
- * Copyright (c) 2012-2018 "kento" Karim Rahimpur www.itthinx.com
- * 
+ *
+ * Copyright (c) 2012-2019 "kento" Karim Rahimpur www.itthinx.com
+ *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
- * 
+ *
  * This code is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * This header and all notices must be kept intact.
- * 
+ *
  * @author Karim Rahimpur
  * @package affiliates-woocommerce-light
  * @since affiliates-woocommerce-light 1.0.0
@@ -21,7 +21,7 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 1.5.0
+ * Version: 1.6.0
  * WC requires at least: 2.6
  * WC tested up to: 3.6
  * Author: itthinx
@@ -41,21 +41,19 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 class Affiliates_WooCommerce_Light_Integration {
 
-	const SHOP_ORDER_POST_TYPE = 'shop_order';
-	const PLUGIN_OPTIONS = 'affiliates_woocommerce_light';
-	const AUTO_ADJUST_DEFAULT = true;
-	const NONCE = 'aff_woo_light_admin_nonce';
-	const SET_ADMIN_OPTIONS = 'set_admin_options';
-	const REFERRAL_RATE = "referral-rate";
-	const REFERRAL_RATE_DEFAULT = "0";
-
-	const USAGE_STATS = 'usage_stats';
-	const USAGE_STATS_DEFAULT = true;
+	const SHOP_ORDER_POST_TYPE  = 'shop_order';
+	const PLUGIN_OPTIONS        = 'affiliates_woocommerce_light';
+	const AUTO_ADJUST_DEFAULT   = true;
+	const NONCE                 = 'aff_woo_light_admin_nonce';
+	const SET_ADMIN_OPTIONS     = 'set_admin_options';
+	const REFERRAL_RATE         = 'referral-rate';
+	const REFERRAL_RATE_DEFAULT = '0';
+	const USAGE_STATS           = 'usage_stats';
+	const USAGE_STATS_DEFAULT   = true;
 
 	/**
-	 * Links to posts of type shop_order will be modified only on these
-	 * admin pages.
-	 * 
+	 * Links to posts of type shop_order will be modified only on these admin pages.
+	 *
 	 * @var array
 	 */
 	private static $shop_order_link_modify_pages = array(
@@ -64,6 +62,11 @@ class Affiliates_WooCommerce_Light_Integration {
 		'affiliates-admin-hits-affiliate'
 	);
 
+	/**
+	 * Holds messages to render on the back end.
+	 *
+	 * @var array
+	 */
 	private static $admin_messages = array();
 
 	/**
@@ -135,7 +138,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		$buttons['affiliates-woocommerce-light'] = sprintf (
 			'<a href="%s" class="button-primary">%s</a>',
 			add_query_arg( 'section', 'affiliates-woocommerce-light', admin_url( 'admin.php?page=affiliates-admin-woocommerce-light' ) ),
-			__( 'Set the Commission Rate', 'affiliates-woocommerce-light' )
+			esc_html__( 'Set the Commission Rate', 'affiliates-woocommerce-light' )
 		);
 		return $buttons;
 	}
@@ -146,8 +149,8 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function affiliates_admin_menu() {
 		$page = add_submenu_page(
 			'affiliates-admin',
-			__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' ),
-			__( 'WooCommerce Integration Light', 'affiliates-woocommerce-light' ),
+			esc_html__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' ),
+			esc_html__( 'WooCommerce Integration Light', 'affiliates-woocommerce-light' ),
 			AFFILIATES_ADMINISTER_OPTIONS,
 			'affiliates-admin-woocommerce-light',
 			array( __CLASS__, 'affiliates_admin_woocommerce_light' )
@@ -163,7 +166,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function affiliates_admin_woocommerce_light() {
 		$output = '';
 		if ( !current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
-			wp_die( __( 'Access denied.', 'affiliates-woocommerce-light' ) );
+			wp_die( esc_html__( 'Access denied.', 'affiliates-woocommerce-light' ) );
 		}
 		$options = get_option( self::PLUGIN_OPTIONS , array() );
 		if ( isset( $_POST['submit'] ) ) {
@@ -179,48 +182,60 @@ class Affiliates_WooCommerce_Light_Integration {
 			update_option( self::PLUGIN_OPTIONS, $options );
 		}
 
-		$referral_rate = isset( $options[self::REFERRAL_RATE] ) ? $options[self::REFERRAL_RATE] : self::REFERRAL_RATE_DEFAULT; 
+		$referral_rate = isset( $options[self::REFERRAL_RATE] ) ? $options[self::REFERRAL_RATE] : self::REFERRAL_RATE_DEFAULT;
 		$usage_stats   = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
 
 		$output .=
 			'<div>' .
 			'<h2>' .
-			__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' ) .
+			esc_html__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' ) .
 			'</h2>' .
 			'</div>';
 
-		$output .= '<p class="manage" style="padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
-		$output .= __( 'You can support the development of the Affiliates plugin and get additional features with <a href="http://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a> and <a href="http://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>.', 'affiliates-woocommerce-light' );
+		$output .= '<p class="manage" style="border:2px solid #00a651;padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
+		$output .= wp_kses(
+			sprintf(
+				__( 'Get additional features with <a href="%s" target="_blank">%s</a> and <a href="%s" target="_blank">%s</a>!', 'affiliates-woocommerce-light' ),
+				'https://www.itthinx.com/shop/affiliates-pro/',
+				'Affiliates Pro',
+				'https://www.itthinx.com/shop/affiliates-enterprise/',
+				'Affiliates Enterprise'
+			),
+			array( 'a' => array( 'href' => array(), 'target' => array() ) )
+		);
 		$output .= '</p>';
 
 		$output .= '<div class="manage" style="padding:2em;margin-right:1em;">';
-		$output .= '<form action="" name="options" method="post">';        
+		$output .= '<form action="" name="options" method="post">';
 		$output .= '<div>';
-		$output .= '<h3>' . __( 'Referral Rate', 'affiliates-woocommerce-light' ) . '</h3>';
+		$output .= '<h3>' . esc_html__( 'Referral Rate', 'affiliates-woocommerce-light' ) . '</h3>';
 		$output .= '<p>';
-		$output .= '<label for="' . self::REFERRAL_RATE . '">' . __( 'Referral rate', 'affiliates-woocommerce-light') . '</label>';
+		$output .= '<label for="' . self::REFERRAL_RATE . '">' . esc_html__( 'Referral rate', 'affiliates-woocommerce-light') . '</label>';
 		$output .= '&nbsp;';
 		$output .= '<input name="' . self::REFERRAL_RATE . '" type="text" value="' . esc_attr( $referral_rate ) . '"/>';
 		$output .= '</p>';
 		$output .= '<p>';
-		$output .= __( 'The referral rate determines the referral amount based on the net sale made.', 'affiliates-woocommerce-light' );
+		$output .= esc_html__( 'The referral rate determines the referral amount based on the net sale made.', 'affiliates-woocommerce-light' );
 		$output .= '</p>';
 		$output .= '<p class="description">';
-		$output .= __( 'Example: Set the referral rate to <strong>0.1</strong> if you want your affiliates to get a <strong>10%</strong> commission on each sale.', 'affiliates-woocommerce-light' );
+		$output .= wp_kses(
+			__( 'Example: Set the referral rate to <strong>0.1</strong> if you want your affiliates to get a <strong>10%</strong> commission on each sale.', 'affiliates-woocommerce-light' ),
+			array( 'strong' => array() )
+		);
 		$output .= '</p>';
 
-		$output .= '<h3>' . __( 'Usage stats', 'affiliates-woocommerce-light' ) . '</h3>';
+		$output .= '<h3>' . esc_html__( 'Usage stats', 'affiliates-woocommerce-light' ) . '</h3>';
 		$output .= '<p>';
 		$output .= '<input name="' . self::USAGE_STATS . '" type="checkbox" ' . ( $usage_stats ? ' checked="checked" ' : '' ) . '/>';
 		$output .= ' ';
-		$output .= '<label for="' . self::USAGE_STATS . '">' . __( 'Allow the plugin to provide usage stats.', 'affiliates-woocommerce-light' ) . '</label>';
+		$output .= '<label for="' . self::USAGE_STATS . '">' . esc_html__( 'Allow the plugin to provide usage stats.', 'affiliates-woocommerce-light' ) . '</label>';
 		$output .= '<br/>';
-		$output .= '<span class="description">' . __( 'This will allow the plugin to help in computing how many installations are actually using it. No personal or site data is transmitted, this simply embeds an icon on the bottom of the Affiliates admin pages, so that the number of visits to these can be counted. This is useful to help prioritize development.', 'affiliates-woocommerce-light' ) . '</span>';
+		$output .= '<span class="description">' . esc_html__( 'This will allow the plugin to help in computing how many installations are actually using it. No personal or site data is transmitted, this simply embeds an icon on the bottom of the Affiliates admin pages, so that the number of visits to these can be counted. This is useful to help prioritize development.', 'affiliates-woocommerce-light' ) . '</span>';
 		$output .= '</p>';
 
 		$output .= '<p>';
 		$output .= wp_nonce_field( self::SET_ADMIN_OPTIONS, self::NONCE, true, false );
-		$output .= '<input class="button-primary" type="submit" name="submit" value="' . __( 'Save', 'affiliates-woocommerce-light' ) . '"/>';
+		$output .= '<input class="button-primary" type="submit" name="submit" value="' . esc_html__( 'Save', 'affiliates-woocommerce-light' ) . '"/>';
 		$output .= '</p>';
 
 		$output .= '</div>';
@@ -234,16 +249,26 @@ class Affiliates_WooCommerce_Light_Integration {
 
 	/**
 	 * Add a notice to the footer that the integration is active.
+	 *
 	 * @param string $footer
+	 *
+	 * @return string footer
 	 */
 	public static function affiliates_footer( $footer ) {
-		$options = get_option( self::PLUGIN_OPTIONS , array() );
-		$usage_stats   = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
+		$options     = get_option( self::PLUGIN_OPTIONS , array() );
+		$usage_stats = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
 		return
 			'<div style="font-size:0.9em">' .
 			'<p>' .
 			( $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>" : '' ) .
-			__( "Powered by <a href='http://www.itthinx.com/plugins/affiliates-woocommerce-light' target='_blank'>Affiliates WooCommerce Integration Light</a>.", 'affiliates-woocommerce-light' ) .
+			wp_kses(
+				sprintf(
+					__( "Powered by <a href='%s' target='_blank'>itthinx.com</a>", 'affiliates-woocommerce-light' ),
+					'https://www.itthinx.com/shop/',
+					'itthinx'
+				),
+				array( 'a' => array( 'href' => array(), 'target' => array() ) )
+			) .
 			'</p>' .
 			'</div>' .
 			$footer;
@@ -251,11 +276,13 @@ class Affiliates_WooCommerce_Light_Integration {
 
 	/**
 	 * Returns an edit link for shop_order post types.
-	 * 
+	 *
 	 * @param string $post_link
 	 * @param array $post
 	 * @param boolean $leavename
 	 * @param boolean $sample
+	 *
+	 * @return string link URL
 	 */
 	public static function post_type_link( $post_link, $post, $leavename, $sample ) {
 		$link = $post_link;
@@ -266,7 +293,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			is_admin() &&
 			// right admin page
 			isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], self::$shop_order_link_modify_pages ) &&
-			// check link 
+			// check link
 			(
 				( preg_match( "/" . self::SHOP_ORDER_POST_TYPE . "=([^&]*)/", $post_link, $matches ) === 1 ) && isset( $matches[1] ) && ( $matches[1] === $post->post_name )
 				||
@@ -280,13 +307,14 @@ class Affiliates_WooCommerce_Light_Integration {
 
 	/**
 	 * Record a referral when a new order has been processed.
-	 * 
+	 *
 	 * Note that we can't hook into the order process before(*), because
 	 * the meta data would not have been added.
-	 * 
+	 *
 	 * (*) We could hook into woocommerce_checkout_update_order_meta but the
 	 * 'coupons' meta data would not be there, so if we want to use it here at
 	 * some point, woocommerce_checkout_order_processed is a better choice.
+	 *
 	 * @param int $order_id the post id of the order
 	 */
 	public static function woocommerce_checkout_order_processed( $order_id ) {
@@ -322,7 +350,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 
 		$order_link = '<a href="' . admin_url( 'post.php?post=' . $order_id . '&action=edit' ) . '">';
-		$order_link .= sprintf( __( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id );
+		$order_link .= sprintf( esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id );
 		$order_link .= "</a>";
 
 		$data = array(
