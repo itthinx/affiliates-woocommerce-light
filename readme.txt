@@ -84,12 +84,6 @@ See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliat
 
 == Changelog ==
 
-= 1.6.0 =
-* Revised and tested for latest stable WordPress 5.1 compatibility.
-* Revised and tested for latest stable WooCommerce 3.6 compatibility.
-* Code documentation and validation fixes.
-* Minor security improvements adding extra escaping to translated strings.
-
 For the complete history of changes see [changelog.txt](https://github.com/itthinx/affiliates-woocommerce-light/blob/master/changelog.txt).
 
 == Upgrade Notice ==
