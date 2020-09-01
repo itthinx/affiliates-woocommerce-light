@@ -21,9 +21,9 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 1.8.0
+ * Version: 1.9.0
  * WC requires at least: 2.6
- * WC tested up to: 4.0
+ * WC tested up to: 4.5
  * Author: itthinx
  * Author URI: http://www.itthinx.com/
  * Donate-Link: http://www.itthinx.com/shop/

@@ -1,5 +1,9 @@
 Changelog - Affiliates WooCommerce Light - www.itthinx.com
 
+= 1.9.0 =
+* WordPress 5.5 compatible.
+* WooCommerce 4.5 compatible.
+
 = 1.8.0 =
 * WordPress 5.4 compatible.
 * WooCommerce 4.0 compatible.
