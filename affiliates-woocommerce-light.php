@@ -19,14 +19,14 @@
  * @since affiliates-woocommerce-light 1.0.0
  *
  * Plugin Name: Affiliates WooCommerce Light
- * Plugin URI: http://www.itthinx.com/plugins/affiliates-woocommerce-light/
+ * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 1.8.0
+ * Version: 1.9.0
  * WC requires at least: 2.6
- * WC tested up to: 4.0
+ * WC tested up to: 4.5
  * Author: itthinx
- * Author URI: http://www.itthinx.com/
- * Donate-Link: http://www.itthinx.com/shop/
+ * Author URI: https://www.itthinx.com/
+ * Donate-Link: https://www.itthinx.com/shop/
  * Text Domain: affiliates-woocommerce-light
  * Domain Path: /languages
  * License: GPLv3
@@ -99,10 +99,10 @@ class Affiliates_WooCommerce_Light_Integration {
 		$woocommerce_is_active = in_array( 'woocommerce/woocommerce.php', $active_plugins );
 		$affiliates_woocommerce_is_active = in_array( 'affiliates-woocommerce/affiliates-woocommerce.php', $active_plugins );
 		if ( !$affiliates_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="http://wordpress.org/plugins/affiliates/">Affiliates</a> plugin.', 'affiliates-woocommerce-light' ) . "</div>";
+			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="https://wordpress.org/plugins/affiliates/">Affiliates</a> plugin.', 'affiliates-woocommerce-light' ) . "</div>";
 		}
 		if ( !$woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="http://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugin to be activated.', 'affiliates-woocommerce-light' ) . "</div>";
+			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugin to be activated.', 'affiliates-woocommerce-light' ) . "</div>";
 		}
 		if ( $affiliates_woocommerce_is_active ) {
 			self::$admin_messages[] = "<div class='error'>" . __( 'You do not need to use the <srtrong>Affiliates WooCommerce Integration Light</strong> plugin because you are already using the advanced Affiliates WooCommerce Integration plugin. Please deactivate the <strong>Affiliates WooCommerce Integration Light</strong> plugin now.', 'affiliates-woocommerce-light' ) . "</div>";
@@ -257,10 +257,11 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function affiliates_footer( $footer ) {
 		$options     = get_option( self::PLUGIN_OPTIONS , array() );
 		$usage_stats = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
+		$protocol = is_ssl() ? 'https://' : 'http://';
 		return
 			'<div style="font-size:0.9em">' .
 			'<p>' .
-			( $usage_stats ? "<img src='http://www.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>" : '' ) .
+			( $usage_stats ? sprintf( "<img src='%swww.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>", $protocol ) : '' ) .
 			wp_kses(
 				sprintf(
 					__( "Powered by <a href='%s' target='_blank'>itthinx.com</a>", 'affiliates-woocommerce-light' ),
