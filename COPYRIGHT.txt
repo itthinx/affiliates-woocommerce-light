@@ -28,9 +28,9 @@
 
  Visit https://www.itthinx.com/ for help, general info and fun.
 
- Plugin page: http://www.itthinx.com/plugins/affiliates-woocommerce-light
- Affiliates plugin: http://www.itthinx.com/plugins/affiliates
- WooCommerce plugin: http://www.woocommerce.com
+ Plugin page: https://www.itthinx.com/plugins/affiliates-woocommerce-light
+ Affiliates plugin: https://www.itthinx.com/plugins/affiliates
+ WooCommerce plugin: https://www.woocommerce.com
 
  You can support our work by purchasing our extensions here:
 
