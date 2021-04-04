@@ -1,11 +1,11 @@
 === Affiliates WooCommerce Light ===
 Contributors: itthinx
-Donate link: http://www.itthinx.com/shop/
+Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketing, ads, advertising, affiliate marketing, affiliate plugin, affiliate tool, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, money, online sale, order, partner, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WordPress
 Requires at least: 4.0
 Tested up to: 5.7
 Requires PHP: 5.6.0
-Stable tag: 1.10.0
+Stable tag: 1.11.0
 License: GPLv3
 
 Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
@@ -35,8 +35,8 @@ Set up your shop with your own affiliate program and determine the commission ra
 = Documentation =
 
 You will find more information on setup and usage on these pages:
-- The documentation pages for the [Affiliates](http://docs.itthinx.com/document/affiliates/) system.
-- The documentation section related to [Integrations](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/).
+- The documentation pages for the [Affiliates](https://docs.itthinx.com/document/affiliates/) system.
+- The documentation section related to [Integrations](https://docs.itthinx.com/document/affiliates/setup/settings/integrations/).
 
 = Follow us =
 
@@ -45,7 +45,7 @@ If you need help, have problems, want to leave feedback or want to provide const
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
-__Follow [itthinx](http://twitter.com/itthinx)__ for updates on this and related tools.
+__Follow [itthinx](https://twitter.com/itthinx)__ for updates on this and related tools.
 
 == Installation ==
 
@@ -62,8 +62,8 @@ You can also upload and extract them in your site's `/wp-content/plugins/` direc
 = Where is the documentation? =
 
 Please refer to these pages:
-- The documentation section related to [Integrations](http://docs.itthinx.com/document/affiliates/setup/settings/integrations/) including this one.
-- The documentation pages for the [Affiliates](http://docs.itthinx.com/document/affiliates/) system.
+- The documentation section related to [Integrations](https://docs.itthinx.com/document/affiliates/setup/settings/integrations/) including this one.
+- The documentation pages for the [Affiliates](https://docs.itthinx.com/document/affiliates/) system.
 
 = What features does this integration provide? =
 
@@ -77,7 +77,7 @@ Example: If you want to give an affiliate 10% of each net total sales amount, se
 
 == Screenshots ==
 
-See also: [Affiliates WooCommerce Light](http://www.itthinx.com/plugins/affiliates-woocommerce-light/)
+See also: [Affiliates WooCommerce Light](https://www.itthinx.com/plugins/affiliates-woocommerce-light/)
 
 1. Referral rate setting - Here, a referral rate set at 0.25 credits affiliates with 25% commissions on sales.
 2. Referrals created automatically for sales - Each referral is linked to its order.

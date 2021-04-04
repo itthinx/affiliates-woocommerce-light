@@ -1,7 +1,7 @@
 
  The Affiliates WooCommerce Integration Light Wordpress Plugin
 
- Copyright 2012-2020 "kento" (Karim Rahimpur) www.itthinx.com
+ Copyright 2012-2021 "kento" (Karim Rahimpur) www.itthinx.com
 
  The files COPYRIGHT.txt and LICENSE.txt as well as ALL NOTICES IN THE
  HEADERS OF ALL FILES MUST BE KEPT INTACT.
@@ -28,9 +28,9 @@
 
  Visit https://www.itthinx.com/ for help, general info and fun.
 
- Plugin page: http://www.itthinx.com/plugins/affiliates-woocommerce-light
- Affiliates plugin: http://www.itthinx.com/plugins/affiliates
- WooCommerce plugin: http://www.woocommerce.com
+ Plugin page: https://www.itthinx.com/plugins/affiliates-woocommerce-light
+ Affiliates plugin: https://www.itthinx.com/plugins/affiliates
+ WooCommerce plugin: https://www.woocommerce.com
 
  You can support our work by purchasing our extensions here:
 
