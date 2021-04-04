@@ -2,7 +2,7 @@
 /**
  * affiliates-woocommerce-light.php
  *
- * Copyright (c) 2012-2020 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2012-2021 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
