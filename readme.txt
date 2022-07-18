@@ -18,11 +18,11 @@ This plugin integrates [Affiliates](https://wordpress.org/plugins/affiliates/) w
 
 With this integration plugin, referrals are created automatically for your affiliates when sales are made.
 
-The plugin allows you to set a referral (commission) rate so that your affiliates get credited with a referral based on a percentage of each sale's total net amount.
+The plugin allows you to set a referral (commission) rate, so that your affiliates get credited with a referral, based on a percentage of each sale's total net amount.
 
 An advanced integration that synchronizes the referrals to their order status is available with [Affiliates Pro](https://www.itthinx.com/shop/affiliates-pro/) and [Affiliates Enterprise](https://www.itthinx.com/shop/affiliates-enterprise/).
 
-*Affiliates* is an outstanding affiliate and growth marketing platform, that helps to boost sales through your own affiliate program. It is the ideal and proven affiliate solution for *WooCommerce*.
+[Affiliates](https://wordpress.org/plugins/affiliates/) is an outstanding affiliate and growth marketing platform, that helps to boost sales through your own affiliate program. Powering affiliate programs for shops since 2011, it is the ideal and proven affiliate solution especially for [WooCommerce](https://wordpress.org/plugins/woocommerce).
 
 = Requirements =
 
@@ -38,10 +38,11 @@ You will find more information on setup and usage on these pages:
 - The documentation pages for the [Affiliates](https://docs.itthinx.com/document/affiliates/) system.
 - The documentation section related to [Integrations](https://docs.itthinx.com/document/affiliates/setup/settings/integrations/).
 
-= Follow us =
+= Talk to us =
 
 __Feedback__ is welcome!
-If you need help, have problems, want to leave feedback or want to provide constructive criticism, you can leave a comment here at the [plugin page](http://www.itthinx.com/plugins/affiliates-woocommerce-light).
+
+If you need help, have problems, want to leave feedback or want to provide constructive criticism, you are welcome to post a comment on the [plugin page](https://www.itthinx.com/plugins/affiliates-woocommerce-light).
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
