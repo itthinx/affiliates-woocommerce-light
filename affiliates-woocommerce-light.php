@@ -21,9 +21,9 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 1.14.0
+ * Version: 1.15.0
  * WC requires at least: 5.9
- * WC tested up to: 6.5
+ * WC tested up to: 6.7
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * Donate-Link: https://www.itthinx.com/shop/
@@ -41,14 +41,53 @@ if ( !defined( 'ABSPATH' ) ) {
  */
 class Affiliates_WooCommerce_Light_Integration {
 
+	/**
+	 * Shop order post type
+	 *
+	 * @var string
+	 */
 	const SHOP_ORDER_POST_TYPE  = 'shop_order';
+
+	/**
+	 * Plugin options key
+	 *
+	 * @var string
+	 */
 	const PLUGIN_OPTIONS        = 'affiliates_woocommerce_light';
+
+	/**
+	 * @var boolean
+	 */
 	const AUTO_ADJUST_DEFAULT   = true;
+
+	/**
+	 * @var string
+	 */
 	const NONCE                 = 'aff_woo_light_admin_nonce';
+
+	/**
+	 * @var string
+	 */
 	const SET_ADMIN_OPTIONS     = 'set_admin_options';
+
+	/**
+	 * @var string
+	 */
 	const REFERRAL_RATE         = 'referral-rate';
+
+	/**
+	 * @var string
+	 */
 	const REFERRAL_RATE_DEFAULT = '0';
+
+	/**
+	 * @var string
+	 */
 	const USAGE_STATS           = 'usage_stats';
+
+	/**
+	 * @var boolean
+	 */
 	const USAGE_STATS_DEFAULT   = true;
 
 	/**
@@ -116,11 +155,8 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 
 		if ( $verified ) {
-
 			load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
-
 			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ) );
-			$options = get_option( self::PLUGIN_OPTIONS , array() );
 			add_filter( 'post_type_link', array( __CLASS__, 'post_type_link' ), 10, 4 );
 			add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
 			add_filter( 'affiliates_footer', array( __CLASS__, 'affiliates_footer' ) );
@@ -132,6 +168,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * Add a setup hint button.
 	 *
 	 * @param array $buttons
+	 *
 	 * @return array
 	 */
 	public static function affiliates_setup_buttons( $buttons ) {
@@ -155,7 +192,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			'affiliates-admin-woocommerce-light',
 			array( __CLASS__, 'affiliates_admin_woocommerce_light' )
 		);
-		$pages[] = $page;
+		// $pages[] = $page;
 		add_action( 'admin_print_styles-' . $page, 'affiliates_admin_print_styles' );
 		add_action( 'admin_print_scripts-' . $page, 'affiliates_admin_print_scripts' );
 	}
@@ -185,12 +222,9 @@ class Affiliates_WooCommerce_Light_Integration {
 		$referral_rate = isset( $options[self::REFERRAL_RATE] ) ? $options[self::REFERRAL_RATE] : self::REFERRAL_RATE_DEFAULT;
 		$usage_stats   = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
 
-		$output .=
-			'<div>' .
-			'<h2>' .
-			esc_html__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' ) .
-			'</h2>' .
-			'</div>';
+		$output .= '<h2>';
+		$output .= esc_html__( 'Affiliates WooCommerce Integration Light', 'affiliates-woocommerce-light' );
+		$output .= '</h2>';
 
 		$output .= '<p class="manage" style="border:2px solid #00a651;padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
 		$output .= wp_kses(
@@ -257,7 +291,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function affiliates_footer( $footer ) {
 		$options     = get_option( self::PLUGIN_OPTIONS , array() );
 		$usage_stats = isset( $options[self::USAGE_STATS] ) ? $options[self::USAGE_STATS] : self::USAGE_STATS_DEFAULT;
-		$protocol = is_ssl() ? 'https://' : 'http://';
+		$protocol    = is_ssl() ? 'https://' : 'http://';
 		return
 			'<div style="font-size:0.9em">' .
 			'<p>' .
