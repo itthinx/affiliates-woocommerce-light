@@ -22,7 +22,7 @@
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
  * Version: 2.0.0
- * WC requires at least: 6.0
+ * WC requires at least: 7.4
  * WC tested up to: 7.8
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
@@ -109,6 +109,13 @@ class Affiliates_WooCommerce_Light_Integration {
 	private static $admin_messages = array();
 
 	/**
+	 * Plugin status
+	 *
+	 * @var array
+	 */
+	private static $plugins = array();
+
+	/**
 	 * Prints admin notices.
 	 */
 	public static function admin_notices() {
@@ -128,15 +135,9 @@ class Affiliates_WooCommerce_Light_Integration {
 
 		$verified = true;
 		$disable = false;
-		$active_plugins = get_option( 'active_plugins', array() );
-		if ( is_multisite() ) {
-			$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins', array() );
-			$active_sitewide_plugins = array_keys( $active_sitewide_plugins );
-			$active_plugins = array_merge( $active_plugins, $active_sitewide_plugins );
-		}
-		$affiliates_is_active = in_array( 'affiliates/affiliates.php', $active_plugins ) || in_array( 'affiliates-pro/affiliates-pro.php', $active_plugins ) || in_array( 'affiliates-enterprise/affiliates-enterprise.php', $active_plugins );
-		$woocommerce_is_active = in_array( 'woocommerce/woocommerce.php', $active_plugins );
-		$affiliates_woocommerce_is_active = in_array( 'affiliates-woocommerce/affiliates-woocommerce.php', $active_plugins );
+		$affiliates_is_active = self::is_active( 'affiliates/affiliates.php' ) || self::is_active( 'affiliates-pro/affiliates-pro.php' ) || self::is_active( 'affiliates-enterprise/affiliates-enterprise.php' );
+		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
+		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
 		if ( !$affiliates_is_active ) {
 			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="https://wordpress.org/plugins/affiliates/">Affiliates</a> plugin.', 'affiliates-woocommerce-light' ) . "</div>";
 		}
@@ -156,12 +157,45 @@ class Affiliates_WooCommerce_Light_Integration {
 
 		if ( $verified ) {
 			load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
-			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ) );
-			add_filter( 'post_type_link', array( __CLASS__, 'post_type_link' ), 10, 4 );
+			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ), 10, 3 );
+			if ( function_exists( 'affiliates_get_referral_post_permalink' ) ) {
+				add_filter( 'affiliates_referral_post_permalink', array( __CLASS__, 'affiliates_referral_post_permalink' ), 10, 2 );
+			} else {
+				add_filter( 'post_type_link', array( __CLASS__, 'post_type_link' ), 10, 4 );
+			}
 			add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
 			add_filter( 'affiliates_footer', array( __CLASS__, 'affiliates_footer' ) );
 			add_filter( 'affiliates_setup_buttons', array( __CLASS__, 'affiliates_setup_buttons' ) );
 		}
+	}
+
+	/**
+	 * Check whether the plugin is active.
+	 *
+	 * @return boolean
+	 */
+	public static function is_active( $plugin ) {
+		if ( !isset( self::$plugins[$plugin] ) ) {
+			self::$plugins[$plugin] = false;
+			if ( function_exists( 'wp_get_active_and_valid_plugins' ) ) {
+				$plugin_path = trailingslashit( WP_PLUGIN_DIR ) . $plugin;
+				$active_plugin_paths = wp_get_active_and_valid_plugins();
+				self::$plugins[$plugin] = in_array( $plugin_path, $active_plugin_paths );
+				if ( !self::$plugins[$plugin] && is_multisite() && function_exists( 'wp_get_active_network_plugins' ) ) {
+					$active_network_plugin_paths = wp_get_active_network_plugins();
+					self::$plugins[$plugin] = in_array( $plugin_path, $active_network_plugin_paths );
+				}
+			} else {
+				$active_plugins = get_option( 'active_plugins', array() );
+				if ( is_multisite() ) {
+					$active_sitewide_plugins = get_site_option( 'active_sitewide_plugins', array() );
+					$active_sitewide_plugins = array_keys( $active_sitewide_plugins );
+					$active_plugins = array_merge( $active_plugins, $active_sitewide_plugins );
+				}
+				self::$plugins[$plugin] = in_array( $plugin, $active_plugins );
+			}
+		}
+		return self::$plugins[$plugin];
 	}
 
 	/**
@@ -310,7 +344,59 @@ class Affiliates_WooCommerce_Light_Integration {
 	}
 
 	/**
+	 * Filter to use the URL to edit the order.
+	 *
+	 * @since 2.0.0
+	 *
+	 * @param string $url
+	 * @param array|object $referral
+	 *
+	 * @return string
+	 */
+	public static function affiliates_referral_post_permalink( $url, $referral ) {
+		$data = null;
+		if ( is_array( $referral ) && array_key_exists( 'data', $referral ) ) {
+			$data = $referral['data'];
+		} else if ( is_object( $referral ) && property_exists( $referral, 'data' ) ) {
+			$data = $referral->data;
+		}
+		if ( $data !== null ) {
+			if ( !empty( $data ) ) {
+				$data = unserialize( $data );
+				if ( is_array( $data ) ) {
+					if ( array_key_exists( 'order_id', $data ) ) {
+						$order_id_data = $data['order_id'];
+						if (
+							is_array( $order_id_data ) &&
+							array_key_exists( 'domain', $order_id_data ) &&
+							$order_id_data['domain'] === 'affiliates-woocommerce-light' &&
+							array_key_exists( 'value', $order_id_data )
+						) {
+							$order = wc_get_order( $order_id_data['value'] );
+							if ( $order instanceof WC_Order ) {
+								if ( current_user_can( 'manage_woocommerce' ) ) {
+									$url = $order->get_edit_order_url();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		// A simpler way would be like this, but we could mistakenly modify links related to referrals from other integrations
+		// if ( is_array( $referral ) && array_key_exists( 'post_id', $referral ) ) {
+		// 	$order = wc_get_order( $referral['post_id'] );
+		// 	if ( $order instanceof WC_Order ) {
+		// 		$url = $order->get_edit_order_url();
+		// 	}
+		// }
+		return $url;
+	}
+
+	/**
 	 * Returns an edit link for shop_order post types.
+	 *
+	 * @deprecated since 2.0.0
 	 *
 	 * @param string $post_link
 	 * @param array $post
@@ -320,7 +406,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * @return string link URL
 	 */
 	public static function post_type_link( $post_link, $post, $leavename, $sample ) {
-		$link = $post_link;
+		$url = $post_link;
 		if (
 			// right post type
 			isset( $post->post_type) && ( $post->post_type == self::SHOP_ORDER_POST_TYPE ) &&
@@ -335,9 +421,12 @@ class Affiliates_WooCommerce_Light_Integration {
 				( strpos( $post_link, 'post_type=' . self::SHOP_ORDER_POST_TYPE ) !== false ) && ( preg_match( '/p=([0-9]+)/', $post_link, $matches ) === 1 ) && isset( $matches[1] ) && ( $matches[1] == $post->ID )
 			)
 		) {
-			$link = admin_url( 'post.php?post=' . $post->ID . '&action=edit' );
+			$order = wc_get_order( $post->ID );
+			if ( $order instanceof WC_Order ) {
+				$url = $order->get_edit_order_url();
+			}
 		}
-		return $link;
+		return $url;
 	}
 
 	/**
@@ -351,42 +440,29 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * some point, woocommerce_checkout_order_processed is a better choice.
 	 *
 	 * @param int $order_id the post id of the order
+	 * @param array $posted_data an array of data
+	 * @param WC_Order $order the order object
 	 */
-	public static function woocommerce_checkout_order_processed( $order_id ) {
+	public static function woocommerce_checkout_order_processed( $order_id, $posted_data, $order ) {
 
-		$order_subtotal = null;
-		$currency       = get_option( 'woocommerce_currency' );
-
-		if ( function_exists( 'wc_get_order' ) ) {
-			if ( $order = wc_get_order( $order_id ) ) {
-				if ( method_exists( $order, 'get_subtotal' ) ) {
-					$order_subtotal = $order->get_subtotal();
-				}
-				if ( method_exists( $order, 'get_total_discount' ) ) {
-					$order_subtotal -= $order->get_total_discount(); // excluding tax
-					if ( $order_subtotal < 0 ) {
-						$order_subtotal = 0;
-					}
-				}
-				if ( method_exists( $order, 'get_currency' ) ) {
-					$currency = $order->get_currency();
-				} else if ( method_exists( $order, 'get_order_currency' ) ) {
-					$currency = $order->get_order_currency();
-				}
-			}
+		if ( !( $order instanceof WC_Order ) ) {
+			return;
 		}
 
-		if ( $order_subtotal === null ) {
-			$order_total        = get_post_meta( $order_id, '_order_total', true );
-			$order_tax          = get_post_meta( $order_id, '_order_tax', true );
-			$order_shipping     = get_post_meta( $order_id, '_order_shipping', true );
-			$order_shipping_tax = get_post_meta( $order_id, '_order_shipping_tax', true );
-			$order_subtotal     = $order_total - $order_tax - $order_shipping - $order_shipping_tax;
+		$currency = $order->get_currency();
+		$order_subtotal = $order->get_subtotal();
+		$discount = $order->get_total_discount();
+		$order_subtotal -= $discount;
+		if ( $order_subtotal < 0 ) {
+			$order_subtotal = 0;
 		}
 
-		$order_link = '<a href="' . admin_url( 'post.php?post=' . $order_id . '&action=edit' ) . '">';
-		$order_link .= sprintf( esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id );
-		$order_link .= "</a>";
+		$edit_url = $order->get_edit_order_url();
+		$order_link = sprintf(
+			'<a href="%s">%s</a>',
+			esc_url( $edit_url ),
+			sprintf( esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id )
+		);
 
 		$data = array(
 			'order_id' => array(
@@ -426,3 +502,10 @@ function affiliates_woocommerce_light_plugins_loaded() {
 	Affiliates_WooCommerce_Light_Integration::init();
 }
 add_action( 'plugins_loaded', 'affiliates_woocommerce_light_plugins_loaded' );
+
+// @since 2.0.0 HPOS compatibility
+add_action( 'before_woocommerce_init', function() {
+	if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+		\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+	}
+} );

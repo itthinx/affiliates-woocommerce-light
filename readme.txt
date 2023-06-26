@@ -2,9 +2,9 @@
 Contributors: itthinx
 Donate link: https://www.itthinx.com/shop/
 Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketing, ads, advertising, affiliate marketing, affiliate plugin, affiliate tool, bucks, contact form, crm, earn money, e-commerce, e-commerce, integration, lead, link, money, online sale, order, partner, referral links, referrer, shopping cart, sales, shop, shopping cart, site, track, transaction, WordPress
-Requires at least: 5.8
+Requires at least: 6.0
 Tested up to: 6.2
-Requires PHP: 5.6.0
+Requires PHP: 7.2
 Stable tag: 2.0.0
 License: GPLv3
 
