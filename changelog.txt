@@ -1,5 +1,17 @@
 Changelog - Affiliates WooCommerce Light - www.itthinx.com
 
+= 2.0.0 =
+* WordPress 6.2 compatible.
+* WooCommerce 7.8 compatible.
+* Requires at least WordPress 6.0.
+* Requires at least WooCommerce 7.4.
+* Requires at least PHP 7.2.
+* WooCommerce HPOS compatible.
+* Updated the method signature of the checkout action handler.
+* Improved how the referral post links are displayed for order referrals, using the new API provided as of Affiliates 4.19.0.
+* Order referral links provided require the manage_woocommerce capability.
+* Added an improved plugin check for plugin requirements.
+
 = 1.17.0 =
 * WordPress 6.1 compatible.
 * WooCommerce 7.4 compatible.
