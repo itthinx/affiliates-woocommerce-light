@@ -163,6 +163,9 @@ class Affiliates_WooCommerce_Light_Integration {
 			} else {
 				add_filter( 'post_type_link', array( __CLASS__, 'post_type_link' ), 10, 4 );
 			}
+			if ( function_exists( 'affiliates_get_referral_post_title' ) ) {
+				add_filter( 'affiliates_referral_post_title', array( __CLASS__, 'affiliates_referral_post_title' ), 10, 2 );
+			}
 			add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
 			add_filter( 'affiliates_footer', array( __CLASS__, 'affiliates_footer' ) );
 			add_filter( 'affiliates_setup_buttons', array( __CLASS__, 'affiliates_setup_buttons' ) );
@@ -391,6 +394,47 @@ class Affiliates_WooCommerce_Light_Integration {
 		// 	}
 		// }
 		return $url;
+	}
+
+	/**
+	 * Filter to display the order title.
+	 *
+	 * @param string $title
+	 * @param array|object $referral
+	 *
+	 * @return string
+	 */
+	public static function affiliates_referral_post_title( $title, $referral ) {
+		$data = null;
+		if ( is_array( $referral ) && array_key_exists( 'data', $referral ) ) {
+			$data = $referral['data'];
+		} else if ( is_object( $referral ) && property_exists( $referral, 'data' ) ) {
+			$data = $referral->data;
+		}
+		if ( $data !== null ) {
+			if ( !empty( $data ) ) {
+				$data = unserialize( $data );
+				if ( is_array( $data ) ) {
+					if ( array_key_exists( 'order_id', $data ) ) {
+						$order_id_data = $data['order_id'];
+						if (
+							is_array( $order_id_data ) &&
+							array_key_exists( 'domain', $order_id_data ) &&
+							$order_id_data['domain'] === 'affiliates-woocommerce-light' &&
+							array_key_exists( 'value', $order_id_data )
+						) {
+							$order = wc_get_order( $order_id_data['value'] );
+							if ( $order instanceof WC_Order ) {
+								if ( current_user_can( 'manage_woocommerce' ) ) {
+									$title = sprintf( '%s #%s', esc_html( $order->get_title() ), esc_html( $order->get_order_number() ) );
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return $title;
 	}
 
 	/**
