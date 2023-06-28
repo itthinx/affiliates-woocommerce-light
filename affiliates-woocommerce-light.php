@@ -21,9 +21,9 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 2.0.0
+ * Version: 2.1.0
  * WC requires at least: 7.4
- * WC tested up to: 7.8
+ * WC tested up to: 7.9
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * Donate-Link: https://www.itthinx.com/shop/
@@ -474,6 +474,21 @@ class Affiliates_WooCommerce_Light_Integration {
 	}
 
 	/**
+	 * Make sure the shop_order type is in the $order_types array.
+	 *
+	 * @param array $order_types
+	 * @param string $for
+	 *
+	 * @return array
+	 */
+	public static function wc_order_types( $order_types, $for ) {
+		if ( !in_array( 'shop_order', $order_types ) ) {
+			$order_types[] = 'shop_order';
+		}
+		return $order_types;
+	}
+
+	/**
 	 * Record a referral when a new order has been processed.
 	 *
 	 * Note that we can't hook into the order process before(*), because
@@ -501,7 +516,10 @@ class Affiliates_WooCommerce_Light_Integration {
 			$order_subtotal = 0;
 		}
 
+		// Workaround to an issue observed as of WooCommerce 7.8.0: Invalid order type: shop_order during checkout with the $order->get_edit_order_url() call:
+		add_filter( 'wc_order_types', array( __CLASS__, 'wc_order_types' ), 10, 2 );
 		$edit_url = $order->get_edit_order_url();
+		remove_filter( 'wc_order_types', array( __CLASS__, 'wc_order_types' ) );
 		$order_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $edit_url ),

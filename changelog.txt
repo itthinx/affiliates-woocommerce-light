@@ -1,5 +1,10 @@
 Changelog - Affiliates WooCommerce Light - www.itthinx.com
 
+= 2.1.0 =
+* WordPress 6.2 compatible.
+* WooCommerce 7.9 compatible.
+* Added a workaround for a potential issue related to WooCommerce checking order types while obtaining their edit URL during checkout.
+
 = 2.0.0 =
 * WordPress 6.2 compatible.
 * WooCommerce 7.8 compatible.
