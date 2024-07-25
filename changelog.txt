@@ -1,5 +1,9 @@
 Changelog - Affiliates WooCommerce Light - www.itthinx.com
 
+= 2.2.0 =
+* WordPress 6.6 compatible.
+* WooCommerce 9.2 compatible.
+
 = 2.1.0 =
 * WordPress 6.2 compatible.
 * WooCommerce 7.9 compatible.
