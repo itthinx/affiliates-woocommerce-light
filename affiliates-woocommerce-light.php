@@ -21,11 +21,11 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 2.2.0
+ * Version: 2.3.0
  * Requires at least: 6.2
  * Requires PHP: 7.4
  * WC requires at least: 8.2
- * WC tested up to: 9.2
+ * WC tested up to: 9.3
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * Donate-Link: https://www.itthinx.com/shop/
@@ -160,6 +160,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		if ( $verified ) {
 			load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
 			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ), 10, 3 );
+			add_action( 'woocommerce_store_api_checkout_order_processed', array( __CLASS__, 'woocommerce_store_api_checkout_order_processed' ), 10 );
 			if ( function_exists( 'affiliates_get_referral_post_permalink' ) ) {
 				add_filter( 'affiliates_referral_post_permalink', array( __CLASS__, 'affiliates_referral_post_permalink' ), 10, 2 );
 			} else {
@@ -491,6 +492,15 @@ class Affiliates_WooCommerce_Light_Integration {
 	}
 
 	/**
+	 * Record a product referral when a new order has been processed.
+	 *
+	 * @param WC_Order $order
+	 */
+	public static function woocommerce_store_api_checkout_order_processed( $order ) {
+		self::order_processed( $order );
+	}
+
+	/**
 	 * Record a referral when a new order has been processed.
 	 *
 	 * Note that we can't hook into the order process before(*), because
@@ -505,10 +515,21 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * @param WC_Order $order the order object
 	 */
 	public static function woocommerce_checkout_order_processed( $order_id, $posted_data, $order ) {
+		self::order_processed( $order );
+	}
+
+	/**
+	 * Record a referral when a new order has been processed.
+	 *
+	 * @param WC_Order $order
+	 */
+	public static function order_processed( $order ) {
 
 		if ( !( $order instanceof WC_Order ) ) {
 			return;
 		}
+
+		$order_id = $order->get_id();
 
 		$currency = $order->get_currency();
 		$order_subtotal = $order->get_subtotal();
