@@ -3,6 +3,7 @@ Changelog - Affiliates WooCommerce Light - www.itthinx.com
 = 2.3.0 =
 * WordPress 6.6 compatible.
 * WooCommerce 9.3 compatible.
+* Updated order processing for Store API.
 
 = 2.2.0 =
 * WordPress 6.6 compatible.
