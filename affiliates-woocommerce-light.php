@@ -153,7 +153,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
-					esc_html__( 'The %1$s plugin requires the %2$s plugin to be activated.', 'affiliates-woocommerce-light' ),
+					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>'
 				) .
@@ -329,15 +329,10 @@ class Affiliates_WooCommerce_Light_Integration {
 		$output .= '</h2>';
 
 		$output .= '<p class="manage" style="border:2px solid #00a651;padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
-		$output .= wp_kses(
-			sprintf(
-				__( 'Get additional features with <a href="%s" target="_blank">%s</a> and <a href="%s" target="_blank">%s</a>!', 'affiliates-woocommerce-light' ),
-				'https://www.itthinx.com/shop/affiliates-pro/',
-				'Affiliates Pro',
-				'https://www.itthinx.com/shop/affiliates-enterprise/',
-				'Affiliates Enterprise'
-			),
-			array( 'a' => array( 'href' => array(), 'target' => array() ) )
+		$output .= sprintf(
+			esc_html__( 'Get additional features with %1$s and %2$s!', 'affiliates-woocommerce-light' ),
+			'<a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a>',
+			'<a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>'
 		);
 		$output .= '</p>';
 
@@ -398,13 +393,9 @@ class Affiliates_WooCommerce_Light_Integration {
 			'<div style="font-size:0.9em">' .
 			'<p>' .
 			( $usage_stats ? sprintf( "<img src='%swww.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>", $protocol ) : '' ) .
-			wp_kses(
-				sprintf(
-					__( "Powered by <a href='%s' target='_blank'>itthinx.com</a>", 'affiliates-woocommerce-light' ),
-					'https://www.itthinx.com/shop/',
-					'itthinx'
-				),
-				array( 'a' => array( 'href' => array(), 'target' => array() ) )
+			sprintf(
+				esc_html__( 'Powered by %1$s', 'affiliates-woocommerce-light' ),
+				'<a href="https://www.itthinx.com/shop/" target="_blank">itthinx.com</a>',
 			) .
 			'</p>' .
 			'</div>' .

@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2025-06-02 15:30+0200\n"
+        "POT-Creation-Date: 2025-06-02 15:40+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,41 +24,40 @@ msgstr  ""
 msgid   "Affiliates WooCommerce Integration Light"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:367
+#: affiliates-woocommerce-light.php:362
 msgid   "Allow the plugin to provide usage stats."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:358
+#: affiliates-woocommerce-light.php:353
 msgid   "Example: Set the referral rate to <strong>0.1</strong> if you want "
         "your affiliates to get a <strong>10%</strong> commission on each "
         "sale."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:334
+#: affiliates-woocommerce-light.php:333
 #, php-format
-msgid   "Get additional features with <a href=\"%s\" target=\"_blank\">%s</a> "
-        "and <a href=\"%s\" target=\"_blank\">%s</a>!"
+msgid   "Get additional features with %1$s and %2$s!"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:611
+#: affiliates-woocommerce-light.php:602
 #, php-format
 msgid   "Order #%s"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:403
+#: affiliates-woocommerce-light.php:397
 #, php-format
-msgid   "Powered by <a href='%s' target='_blank'>itthinx.com</a>"
+msgid   "Powered by %1$s"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:347
+#: affiliates-woocommerce-light.php:342
 msgid   "Referral Rate"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:349
+#: affiliates-woocommerce-light.php:344
 msgid   "Referral rate"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:374
+#: affiliates-woocommerce-light.php:369
 msgid   "Save"
 msgstr  ""
 
@@ -70,22 +69,17 @@ msgstr  ""
 msgid   "Settings"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:156
-#, php-format
-msgid   "The %1$s plugin requires the %2$s plugin to be activated."
-msgstr  ""
-
-#: affiliates-woocommerce-light.php:146
+#: affiliates-woocommerce-light.php:146 affiliates-woocommerce-light.php:156
 #, php-format
 msgid   "The %1$s plugin requires the %2$s plugin."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:354
+#: affiliates-woocommerce-light.php:349
 msgid   "The referral rate determines the referral amount based on the net "
         "sale made."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:369
+#: affiliates-woocommerce-light.php:364
 msgid   "This will allow the plugin to help in computing how many "
         "installations are actually using it. No personal or site data is "
         "transmitted, this simply embeds an icon on the bottom of the "
@@ -93,7 +87,7 @@ msgid   "This will allow the plugin to help in computing how many "
         "counted. This is useful to help prioritize development."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:363
+#: affiliates-woocommerce-light.php:358
 msgid   "Usage stats"
 msgstr  ""
 
