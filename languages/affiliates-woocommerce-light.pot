@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2017-01-04 09:53+0100\n"
+        "POT-Creation-Date: 2025-06-02 15:30+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,69 +16,76 @@ msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Content-Type: text/plain; charset=CHARSET\n"
         "Content-Transfer-Encoding: 8bit\n"
 
-#: affiliates-woocommerce-light.php:160
+#: affiliates-woocommerce-light.php:308
 msgid   "Access denied."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:143 affiliates-woocommerce-light.php:182
+#: affiliates-woocommerce-light.php:291 affiliates-woocommerce-light.php:328
 msgid   "Affiliates WooCommerce Integration Light"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:210
+#: affiliates-woocommerce-light.php:367
 msgid   "Allow the plugin to provide usage stats."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:203
+#: affiliates-woocommerce-light.php:358
 msgid   "Example: Set the referral rate to <strong>0.1</strong> if you want "
         "your affiliates to get a <strong>10%</strong> commission on each "
         "sale."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:317
+#: affiliates-woocommerce-light.php:334
+#, php-format
+msgid   "Get additional features with <a href=\"%s\" target=\"_blank\">%s</a> "
+        "and <a href=\"%s\" target=\"_blank\">%s</a>!"
+msgstr  ""
+
+#: affiliates-woocommerce-light.php:611
 #, php-format
 msgid   "Order #%s"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:240
-msgid   "Powered by <a href='http://www.itthinx.com/plugins/affiliates-"
-        "woocommerce-light' target='_blank'>Affiliates WooCommerce "
-        "Integration Light</a>."
+#: affiliates-woocommerce-light.php:403
+#, php-format
+msgid   "Powered by <a href='%s' target='_blank'>itthinx.com</a>"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:193
+#: affiliates-woocommerce-light.php:347
 msgid   "Referral Rate"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:195
+#: affiliates-woocommerce-light.php:349
 msgid   "Referral rate"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:217
+#: affiliates-woocommerce-light.php:374
 msgid   "Save"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:132
+#: affiliates-woocommerce-light.php:280
 msgid   "Set the Commission Rate"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:93
-msgid   "The <strong>Affiliates WooCommerce Integration Light</strong> plugin "
-        "requires the <a href=\"http://wordpress.org/plugins/affiliates/"
-        "\">Affiliates</a> plugin."
+#: affiliates-woocommerce-light.php:234
+msgid   "Settings"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:96
-msgid   "The <strong>Affiliates WooCommerce Integration Light</strong> plugin "
-        "requires the <a href=\"http://wordpress.org/plugins/woocommerce/"
-        "\">WooCommerce</a> plugin to be activated."
+#: affiliates-woocommerce-light.php:156
+#, php-format
+msgid   "The %1$s plugin requires the %2$s plugin to be activated."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:200
+#: affiliates-woocommerce-light.php:146
+#, php-format
+msgid   "The %1$s plugin requires the %2$s plugin."
+msgstr  ""
+
+#: affiliates-woocommerce-light.php:354
 msgid   "The referral rate determines the referral amount based on the net "
         "sale made."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:212
+#: affiliates-woocommerce-light.php:369
 msgid   "This will allow the plugin to help in computing how many "
         "installations are actually using it. No personal or site data is "
         "transmitted, this simply embeds an icon on the bottom of the "
@@ -86,26 +93,16 @@ msgid   "This will allow the plugin to help in computing how many "
         "counted. This is useful to help prioritize development."
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:206
+#: affiliates-woocommerce-light.php:363
 msgid   "Usage stats"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:144
+#: affiliates-woocommerce-light.php:292
 msgid   "WooCommerce Integration Light"
 msgstr  ""
 
-#: affiliates-woocommerce-light.php:187
-msgid   "You can support the development of the Affiliates plugin and get "
-        "additional features with <a href=\"http://www.itthinx.com/shop/"
-        "affiliates-pro/\" target=\"_blank\">Affiliates Pro</a> and <a href="
-        "\"http://www.itthinx.com/shop/affiliates-enterprise/\" target="
-        "\"_blank\">Affiliates Enterprise</a>."
-msgstr  ""
-
-#: affiliates-woocommerce-light.php:99
-msgid   "You do not need to use the <srtrong>Affiliates WooCommerce "
-        "Integration Light</strong> plugin because you are already using the "
-        "advanced Affiliates WooCommerce Integration plugin. Please "
-        "deactivate the <strong>Affiliates WooCommerce Integration Light</"
-        "strong> plugin now."
+#: affiliates-woocommerce-light.php:166
+#, php-format
+msgid   "You do not need to use the %1$s plugin because you are already using "
+        "the advanced %2$s plugin. Please deactivate the %3$s plugin now."
 msgstr  ""

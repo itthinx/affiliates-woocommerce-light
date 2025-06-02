@@ -5,6 +5,9 @@ Changelog - Affiliates WooCommerce Light - www.itthinx.com
 * WooCommerce 9.9 compatible.
 * Added the Settings link to the plugin entry.
 * Fixed translation calls made too early.
+* Added output escaping to several instances of admin notifications.
+* Updated dependency notifications to use more appropriate formatting.
+* Updated the translation template.
 
 = 3.1.0 =
 * WordPress 6.8 compatible.

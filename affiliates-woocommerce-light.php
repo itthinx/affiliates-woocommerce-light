@@ -140,13 +140,35 @@ class Affiliates_WooCommerce_Light_Integration {
 		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
 		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
 		if ( !$affiliates_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="https://wordpress.org/plugins/affiliates/">Affiliates</a> plugin.', 'affiliates-woocommerce-light' ) . "</div>";
+			self::$admin_messages[] =
+				'<div class="error">' .
+				sprintf(
+					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
+					'<strong>Affiliates WooCommerce Light</strong>',
+					'<a href="https://wordpress.org/plugins/affiliates/">Affiliates</a>'
+				) .
+				'</div>';
 		}
 		if ( !$woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( 'The <strong>Affiliates WooCommerce Integration Light</strong> plugin requires the <a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a> plugin to be activated.', 'affiliates-woocommerce-light' ) . "</div>";
+			self::$admin_messages[] =
+				'<div class="error">' .
+				sprintf(
+					esc_html__( 'The %1$s plugin requires the %2$s plugin to be activated.', 'affiliates-woocommerce-light' ),
+					'<strong>Affiliates WooCommerce Light</strong>',
+					'<a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>'
+				) .
+			"</div>";
 		}
 		if ( $affiliates_woocommerce_is_active ) {
-			self::$admin_messages[] = "<div class='error'>" . __( 'You do not need to use the <srtrong>Affiliates WooCommerce Integration Light</strong> plugin because you are already using the advanced Affiliates WooCommerce Integration plugin. Please deactivate the <strong>Affiliates WooCommerce Integration Light</strong> plugin now.', 'affiliates-woocommerce-light' ) . "</div>";
+			self::$admin_messages[] =
+				'<div class="error">' .
+				sprintf(
+					esc_html__( 'You do not need to use the %1$s plugin because you are already using the advanced %2$s plugin. Please deactivate the %3$s plugin now.', 'affiliates-woocommerce-light' ),
+					'<strong>Affiliates WooCommerce Light</strong>',
+					'<strong>Affiliates WooCommerce Integration</strong>',
+					'<strong>Affiliates WooCommerce Light</strong>'
+				) .
+				'</div>';
 		}
 	}
 
