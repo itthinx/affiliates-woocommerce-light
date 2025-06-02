@@ -172,7 +172,34 @@ class Affiliates_WooCommerce_Light_Integration {
 			add_action( 'affiliates_admin_menu', array( __CLASS__, 'affiliates_admin_menu' ) );
 			add_filter( 'affiliates_footer', array( __CLASS__, 'affiliates_footer' ) );
 			add_filter( 'affiliates_setup_buttons', array( __CLASS__, 'affiliates_setup_buttons' ) );
+			add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( __CLASS__, 'plugin_action_links' ) );
 		}
+	}
+
+	/**
+	 * Settings link.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @param string[] $links
+	 *
+	 * @return string[]
+	 */
+	public static function plugin_action_links( $links ) {
+		if ( current_user_can( AFFILIATES_ADMINISTER_OPTIONS ) ) {
+			$url = add_query_arg(
+				array(
+					'page' => 'affiliates-admin-woocommerce-light'
+				),
+				admin_url( 'admin.php' )
+			);
+			$links[] = sprintf(
+				'<a href="%1$s">%2$s</a>',
+				esc_url( $url ),
+				esc_html__( 'Settings', 'affiliates-woocommerce-light' )
+			);
+		}
+		return $links;
 	}
 
 	/**
