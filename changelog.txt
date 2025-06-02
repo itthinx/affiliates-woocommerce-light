@@ -4,6 +4,7 @@ Changelog - Affiliates WooCommerce Light - www.itthinx.com
 * WordPress 6.8 compatible.
 * WooCommerce 9.9 compatible.
 * Added the Settings link to the plugin entry.
+* Fixed translation calls made too early.
 
 = 3.1.0 =
 * WordPress 6.8 compatible.

@@ -128,15 +128,14 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 	}
 
+
 	/**
-	 * Checks dependencies and adds appropriate actions and filters.
+	 * Hooked on init.
+	 *
+	 * @since 3.2.0
 	 */
-	public static function init() {
-
-		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
-
-		$verified = true;
-		$disable = false;
+	public static function wp_init() {
+		load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
 		$affiliates_is_active = self::is_active( 'affiliates/affiliates.php' ) || self::is_active( 'affiliates-pro/affiliates-pro.php' ) || self::is_active( 'affiliates-enterprise/affiliates-enterprise.php' );
 		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
 		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
@@ -149,6 +148,21 @@ class Affiliates_WooCommerce_Light_Integration {
 		if ( $affiliates_woocommerce_is_active ) {
 			self::$admin_messages[] = "<div class='error'>" . __( 'You do not need to use the <srtrong>Affiliates WooCommerce Integration Light</strong> plugin because you are already using the advanced Affiliates WooCommerce Integration plugin. Please deactivate the <strong>Affiliates WooCommerce Integration Light</strong> plugin now.', 'affiliates-woocommerce-light' ) . "</div>";
 		}
+	}
+
+	/**
+	 * Checks dependencies and adds appropriate actions and filters.
+	 */
+	public static function init() {
+
+		add_action( 'init', array( __CLASS__, 'wp_init' ) );
+		add_action( 'admin_notices', array( __CLASS__, 'admin_notices' ) );
+
+		$verified = true;
+		$disable = false;
+		$affiliates_is_active = self::is_active( 'affiliates/affiliates.php' ) || self::is_active( 'affiliates-pro/affiliates-pro.php' ) || self::is_active( 'affiliates-enterprise/affiliates-enterprise.php' );
+		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
+		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
 		if ( !$affiliates_is_active || !$woocommerce_is_active || $affiliates_woocommerce_is_active ) {
 			if ( $disable ) {
 				include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
@@ -158,7 +172,6 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 
 		if ( $verified ) {
-			load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
 			add_action ( 'woocommerce_checkout_order_processed', array( __CLASS__, 'woocommerce_checkout_order_processed' ), 10, 3 );
 			add_action( 'woocommerce_store_api_checkout_order_processed', array( __CLASS__, 'woocommerce_store_api_checkout_order_processed' ), 10 );
 			if ( function_exists( 'affiliates_get_referral_post_permalink' ) ) {
