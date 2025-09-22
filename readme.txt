@@ -46,7 +46,7 @@ If you need help, have problems, want to leave feedback or want to provide const
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
-__Follow [itthinx](https://twitter.com/itthinx)__ for updates on this and related tools.
+__Follow [itthinx](https://x.com/itthinx)__ for updates on this and related tools.
 
 == Installation ==
 
