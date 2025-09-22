@@ -5,7 +5,7 @@ Tags: affiliate, affiliates, affiliate marketing, referral, WooCommerce, marketi
 Requires at least: 6.5
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 3.4.0
+Stable tag: 3.5.0
 License: GPLv3
 
 Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
@@ -46,7 +46,7 @@ If you need help, have problems, want to leave feedback or want to provide const
 
 Please try to solve problems there before you rate this plugin or say it doesn't work. There goes a _lot_ of work into providing you with free quality plugins! Please appreciate that and help with your feedback. Thanks!
 
-__Follow [itthinx](https://twitter.com/itthinx)__ for updates on this and related tools.
+__Follow [itthinx](https://x.com/itthinx)__ for updates on this and related tools.
 
 == Installation ==
 
