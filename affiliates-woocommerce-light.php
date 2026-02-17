@@ -2,7 +2,7 @@
 /**
  * affiliates-woocommerce-light.php
  *
- * Copyright (c) 2012-2025 "kento" Karim Rahimpur www.itthinx.com
+ * Copyright (c) 2012-2026 "kento" Karim Rahimpur www.itthinx.com
  *
  * This code is released under the GNU General Public License.
  * See COPYRIGHT.txt and LICENSE.txt.
@@ -21,11 +21,11 @@
  * Plugin Name: Affiliates WooCommerce Light
  * Plugin URI: https://www.itthinx.com/plugins/affiliates-woocommerce-light/
  * Description: Grow your Business with your own Affiliate Network and let your partners earn commissions on referred sales. Integrates Affiliates and WooCommerce.
- * Version: 3.7.0
+ * Version: 4.0.0
  * Requires at least: 6.5
  * Requires PHP: 7.4
  * WC requires at least: 9.0
- * WC tested up to: 10.4
+ * WC tested up to: 10.5
  * Author: itthinx
  * Author URI: https://www.itthinx.com/
  * Donate-Link: https://www.itthinx.com/shop/
@@ -123,7 +123,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function admin_notices() {
 		if ( !empty( self::$admin_messages ) ) {
 			foreach ( self::$admin_messages as $msg ) {
-				echo $msg;
+				echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}
@@ -135,7 +135,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * @since 3.2.0
 	 */
 	public static function wp_init() {
-		load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
+		load_plugin_textdomain( 'affiliates-woocommerce-light', false, 'affiliates-woocommerce-light' . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 		$affiliates_is_active = self::is_active( 'affiliates/affiliates.php' ) || self::is_active( 'affiliates-pro/affiliates-pro.php' ) || self::is_active( 'affiliates-enterprise/affiliates-enterprise.php' );
 		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
 		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
@@ -143,6 +143,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+					/* translators: plugin name, link */
 					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<a href="https://wordpress.org/plugins/affiliates/">Affiliates</a>'
@@ -153,6 +154,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+				/* translators: plugin name, link */
 					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>'
@@ -163,6 +165,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+				/* translators: plugin name, plugin name, plugin name */
 					esc_html__( 'You do not need to use the %1$s plugin because you are already using the advanced %2$s plugin. Please deactivate the %3$s plugin now.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<strong>Affiliates WooCommerce Integration</strong>',
@@ -309,8 +312,8 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 		$options = get_option( self::PLUGIN_OPTIONS , array() );
 		if ( isset( $_POST['submit'] ) ) {
-			if ( wp_verify_nonce( $_POST[self::NONCE], self::SET_ADMIN_OPTIONS ) ) {
-				$options[self::REFERRAL_RATE]  = floatval( $_POST[self::REFERRAL_RATE] );
+			if ( isset( $_POST[self::NONCE] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[self::NONCE] ) ), self::SET_ADMIN_OPTIONS ) ) {
+				$options[self::REFERRAL_RATE]  = floatval( $_POST[self::REFERRAL_RATE] ?? 0.0 );
 				if ( $options[self::REFERRAL_RATE] > 1.0 ) {
 					$options[self::REFERRAL_RATE] = 1.0;
 				} else if ( $options[self::REFERRAL_RATE] < 0 ) {
@@ -330,6 +333,7 @@ class Affiliates_WooCommerce_Light_Integration {
 
 		$output .= '<p class="manage" style="border:2px solid #00a651;padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
 		$output .= sprintf(
+		/* translators: */
 			esc_html__( 'Get additional features with %1$s and %2$s!', 'affiliates-woocommerce-light' ),
 			'<a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a>',
 			'<a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>'
@@ -373,7 +377,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		$output .= '</form>';
 		$output .= '</div>';
 
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		affiliates_footer();
 	}
@@ -394,6 +398,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			'<p>' .
 			( $usage_stats ? sprintf( "<img src='%swww.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>", $protocol ) : '' ) .
 			sprintf(
+				/* translators: link */
 				esc_html__( 'Powered by %1$s', 'affiliates-woocommerce-light' ),
 				'<a href="https://www.itthinx.com/shop/" target="_blank">itthinx.com</a>',
 			) .
@@ -513,7 +518,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			// admin page
 			is_admin() &&
 			// right admin page
-			isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], self::$shop_order_link_modify_pages ) &&
+			isset( $_REQUEST['page'] ) && in_array( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), self::$shop_order_link_modify_pages ) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// check link
 			(
 				( preg_match( "/" . self::SHOP_ORDER_POST_TYPE . "=([^&]*)/", $post_link, $matches ) === 1 ) && isset( $matches[1] ) && ( $matches[1] === $post->post_name )
@@ -599,7 +604,11 @@ class Affiliates_WooCommerce_Light_Integration {
 		$order_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $edit_url ),
-			sprintf( esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id )
+			sprintf(
+				/* translators: order number */
+				esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ),
+				$order_id
+			)
 		);
 
 		$data = array(
