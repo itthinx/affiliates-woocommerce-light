@@ -3,6 +3,10 @@ Changelog - Affiliates WooCommerce Light - www.itthinx.com
 = 4.0.0 =
 * WordPress 6.9 compatible.
 * WooCommerce 10.5 compatible.
+* Added missing translators comments.
+* Validation hints for WordPress.Security.EscapeOutput.OutputNotEscaped.
+* Fixed a deprecated use of passing null as argument to function call.
+* Validation hint for PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound.
 
 = 3.7.0 =
 * WordPress 6.9 compatible.

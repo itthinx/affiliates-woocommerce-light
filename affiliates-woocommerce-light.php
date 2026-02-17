@@ -123,7 +123,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	public static function admin_notices() {
 		if ( !empty( self::$admin_messages ) ) {
 			foreach ( self::$admin_messages as $msg ) {
-				echo $msg;
+				echo $msg; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 		}
 	}
@@ -135,7 +135,7 @@ class Affiliates_WooCommerce_Light_Integration {
 	 * @since 3.2.0
 	 */
 	public static function wp_init() {
-		load_plugin_textdomain( 'affiliates-woocommerce-light', null, 'affiliates-woocommerce-light' . '/languages' );
+		load_plugin_textdomain( 'affiliates-woocommerce-light', false, 'affiliates-woocommerce-light' . '/languages' ); // phpcs:ignore PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 		$affiliates_is_active = self::is_active( 'affiliates/affiliates.php' ) || self::is_active( 'affiliates-pro/affiliates-pro.php' ) || self::is_active( 'affiliates-enterprise/affiliates-enterprise.php' );
 		$woocommerce_is_active = self::is_active( 'woocommerce/woocommerce.php' );
 		$affiliates_woocommerce_is_active = self::is_active( 'affiliates-woocommerce/affiliates-woocommerce.php' );
@@ -143,6 +143,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+					/* translators: plugin name, link */
 					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<a href="https://wordpress.org/plugins/affiliates/">Affiliates</a>'
@@ -153,6 +154,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+				/* translators: plugin name, link */
 					esc_html__( 'The %1$s plugin requires the %2$s plugin.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<a href="https://wordpress.org/plugins/woocommerce/">WooCommerce</a>'
@@ -163,6 +165,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			self::$admin_messages[] =
 				'<div class="error">' .
 				sprintf(
+				/* translators: plugin name, plugin name, plugin name */
 					esc_html__( 'You do not need to use the %1$s plugin because you are already using the advanced %2$s plugin. Please deactivate the %3$s plugin now.', 'affiliates-woocommerce-light' ),
 					'<strong>Affiliates WooCommerce Light</strong>',
 					'<strong>Affiliates WooCommerce Integration</strong>',
@@ -330,6 +333,7 @@ class Affiliates_WooCommerce_Light_Integration {
 
 		$output .= '<p class="manage" style="border:2px solid #00a651;padding:1em;margin-right:1em;font-weight:bold;font-size:1em;line-height:1.62em">';
 		$output .= sprintf(
+		/* translators: */
 			esc_html__( 'Get additional features with %1$s and %2$s!', 'affiliates-woocommerce-light' ),
 			'<a href="https://www.itthinx.com/shop/affiliates-pro/" target="_blank">Affiliates Pro</a>',
 			'<a href="https://www.itthinx.com/shop/affiliates-enterprise/" target="_blank">Affiliates Enterprise</a>'
@@ -373,7 +377,7 @@ class Affiliates_WooCommerce_Light_Integration {
 		$output .= '</form>';
 		$output .= '</div>';
 
-		echo $output;
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 		affiliates_footer();
 	}
@@ -394,6 +398,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			'<p>' .
 			( $usage_stats ? sprintf( "<img src='%swww.itthinx.com/img/affiliates-woocommerce/affiliates-woocommerce-light.png' alt='Logo'/>", $protocol ) : '' ) .
 			sprintf(
+				/* translators: link */
 				esc_html__( 'Powered by %1$s', 'affiliates-woocommerce-light' ),
 				'<a href="https://www.itthinx.com/shop/" target="_blank">itthinx.com</a>',
 			) .
@@ -599,7 +604,11 @@ class Affiliates_WooCommerce_Light_Integration {
 		$order_link = sprintf(
 			'<a href="%s">%s</a>',
 			esc_url( $edit_url ),
-			sprintf( esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ), $order_id )
+			sprintf(
+				/* translators: order number */
+				esc_html__( 'Order #%s', 'affiliates-woocommerce-light' ),
+				$order_id
+			)
 		);
 
 		$data = array(
