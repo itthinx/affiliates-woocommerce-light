@@ -312,8 +312,8 @@ class Affiliates_WooCommerce_Light_Integration {
 		}
 		$options = get_option( self::PLUGIN_OPTIONS , array() );
 		if ( isset( $_POST['submit'] ) ) {
-			if ( wp_verify_nonce( $_POST[self::NONCE], self::SET_ADMIN_OPTIONS ) ) {
-				$options[self::REFERRAL_RATE]  = floatval( $_POST[self::REFERRAL_RATE] );
+			if ( isset( $_POST[self::NONCE] ) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST[self::NONCE] ) ), self::SET_ADMIN_OPTIONS ) ) {
+				$options[self::REFERRAL_RATE]  = floatval( $_POST[self::REFERRAL_RATE] ?? 0.0 );
 				if ( $options[self::REFERRAL_RATE] > 1.0 ) {
 					$options[self::REFERRAL_RATE] = 1.0;
 				} else if ( $options[self::REFERRAL_RATE] < 0 ) {
@@ -518,7 +518,7 @@ class Affiliates_WooCommerce_Light_Integration {
 			// admin page
 			is_admin() &&
 			// right admin page
-			isset( $_REQUEST['page'] ) && in_array( $_REQUEST['page'], self::$shop_order_link_modify_pages ) &&
+			isset( $_REQUEST['page'] ) && in_array( sanitize_text_field( wp_unslash( $_REQUEST['page'] ) ), self::$shop_order_link_modify_pages ) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			// check link
 			(
 				( preg_match( "/" . self::SHOP_ORDER_POST_TYPE . "=([^&]*)/", $post_link, $matches ) === 1 ) && isset( $matches[1] ) && ( $matches[1] === $post->post_name )
