@@ -1,5 +1,9 @@
 Changelog - Affiliates WooCommerce Light - www.itthinx.com
 
+= 5.1.0 =
+* WordPress 7.1 compatible.
+* WooCommerce 11.2 compatible.
+
 = 5.0.0 =
 * WordPress 7.0 compatible.
 * WooCommerce 11.0 compatible.
